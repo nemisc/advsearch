@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Advanced Search</title>
+    <script src="ytsrc.js" defer></script>
+    <link rel="stylesheet" href="ytsrc.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="mono"><img src="adv_logo.png"></img></div>
+    </div>
+ 
+    <!-- Search Section -->
+    <div class="card">
+      <div class="search-container">
+        <div class="search-input-wrapper">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+          <input type="text" id="searchQuery" placeholder="Search videos..." />
+        </div>
+        <button class="btn-primary" id="searchBtn">Search</button>
+      </div>
+ 
+      <!-- Filters -->
+      <div class="filters-grid">
+        <!-- View Count -->
+        <div class="filter-group">
+          <label class="filter-label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            View Count Range
+          </label>
+          <div class="view-count-inputs">
+            <input type="number" id="minViews" placeholder="Min" />
+            <input type="number" id="maxViews" placeholder="Max" />
+          </div>
+        </div>
+ 
+        <!-- Date After -->
+        <div class="filter-group">
+          <label class="filter-label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            Published After
+          </label>
+          <input type="date" id="dateAfter" />
+        </div>
+ 
+        <!-- Date Before -->
+        <div class="filter-group">
+          <label class="filter-label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect>
+              <line x1="16" x2="16" y1="2" y2="6"></line>
+              <line x1="8" x2="8" y1="2" y2="6"></line>
+              <line x1="3" x2="21" y1="10" y2="10"></line>
+            </svg>
+            Published Before
+          </label>
+          <input type="date" id="dateBefore" />
+        </div>
+
+                <!-- Sort By -->
+        <div class="filter-group">
+          <label class="filter-label">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Sort By
+          </label>
+          <select id="sortBy">
+            <option value="relevance">Relevance</option>
+            <option value="date">Upload Date</option>
+            <option value="viewCount">View Count</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+
+      <div class="api-key-box">
+        <label>API</label>
+
+        <input id="apiKey" type="text" placeholder="Insert API key........."/>
+        <div class="warn">to find the API key you need to go at <a href="https://console.cloud.google.com/">console.cloud.google.com</a></div>
+      </div>
+
+        <!-- Age Restriction -->
+        <div class="filter-group">
+          <label class="checkbox-wrapper">
+            <input type="checkbox" id="ageRestricted" />
+            <span class="filter-label">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              Include Age-Restricted Content
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- Error -->
+    <div id="error" class="error" style="display: none;"></div>
+ 
+    <!-- Loading -->
+    <div id="loading" class="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p class="loading-text">Searching videos...</p>
+    </div>
+ <div class="results_bkgd">
+    <!-- Results Info -->
+    <div id="resultsInfo" class="results-info mono" style="display: none;"></div>
+ 
+    <!-- Results Grid -->
+    <div id="results" class="results-grid"></div>
+</div>
+ 
+    <!-- Empty State -->
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <p>No videos found matching your criteria</p>
+    </div>
+  </div>
+</body>
+</html>
